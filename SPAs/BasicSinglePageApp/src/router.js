@@ -1,13 +1,15 @@
 import { renderHomePage } from './home.js';
 import { renderLoginPage } from './login.js';
 import { renderContact } from './contact-from.js';
-import { renderInformation } from './information.js';
+import { renderCarModels } from './car-models.js';
+import { renderUserAccount } from './user-account.js';
 
 const routes = {
     '/' : renderHomePage,
     '/login' : renderLoginPage,
-    '/information' : renderInformation,
+    '/carModels' : renderCarModels,
     '/contact-form' : renderContact,
+    '/user-account' : renderUserAccount,
 }
 
 export function router(path){

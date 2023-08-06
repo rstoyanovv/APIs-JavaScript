@@ -1,16 +1,47 @@
+import { router } from './router.js'
+
 const loginSection = document.querySelector('.login');
 const loginForm = loginSection.querySelector('form');
-
-loginForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    let formData = new FormData(e.currentTarget);
-    let username = formData.get('username');
-    let password = formData.get('password');
-
-    console.log(`Successful submit with username: ${username} and password: ${password}`);
-});
+const loginMessage = document.querySelector('.login-message');
 
 export function renderLoginPage() {
     loginSection.style.display = 'block';
+}
+
+export function loginHandler() {
+
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const usernameInput = loginForm.elements.username;
+        const passwordInput = loginForm.elements.password;
+
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+
+        const isLoginSuccessful = loginProcess(username, password);
+
+        if (isLoginSuccessful) {
+            router('/user-account');
+        } else {
+            loginMessage.style.display = 'block';
+        }
+
+        usernameInput.value = '';
+        passwordInput.value = '';
+    });
+}
+
+function loginProcess(username, password) {
+    const users = {
+        Peter : 'password123',
+        George : 'password111',
+        Maria : 'password222',
+    };
+
+    if(users.hasOwnProperty(username) && users[username] === password){
+        return true;
+    } else {
+        return false;
+    }
 }

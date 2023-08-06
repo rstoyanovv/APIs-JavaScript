@@ -1,6 +1,8 @@
 import { router } from './router.js';
+import { loginHandler } from './login.js';
 
 const navigationElement = document.querySelector('.navigation');
+
 navigationElement.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -8,4 +10,8 @@ navigationElement.addEventListener('click', (e) => {
         let url = new URL(e.target.href);
         router(url.pathname);
     }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    loginHandler();
 });

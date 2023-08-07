@@ -2,36 +2,46 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: grey;
 }
+
 header {
     background-color: #333;
     color: #fff;
-    padding: 10px;
+    padding: 20px;
 }
+
 nav {
     display: flex;
     justify-content: space-between;
 }
+
 nav a {
     color: #fff;
     text-decoration: none;
     margin: 0 10px;
+    place-items: center;
 }
+
 main {
     padding: 20px;
 }
+
 section {
     margin-bottom: 20px;
 }
+
 form {
     display: flex;
     flex-direction: column;
     max-width: 400px;
     margin: 0 auto;
 }
+
 label, input {
     margin-bottom: 10px;
 }
+
 input[type="submit"] {
     background-color: #333;
     color: #fff;
@@ -40,9 +50,114 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-.home-page,
 .login,
 .information,
-.contact-form {
+.contact-form,
+.carModels {
     display: none;
+}
+
+.home-page {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.title {
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.model-heading {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.model-main-heading {
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 24px;
+    margin-bottom: 12px;
+}
+
+.home-page{
+    width: 80%;
+    max-width: 1200px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 65%;
+    left: 50%;
+    overflow: hidden;
+    border: 10px solid #ffffff;
+    border-radius: 15px;
+    box-shadow: -1px 5px 15px black;
+}
+
+.models-container {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    gap: 3px;
+}
+
+.car-model {
+    margin: 20px;
+    padding: 15px;
+    box-shadow: -1px 5px 15px black;
+    border-radius: 10px;
+    border: 10px solid #ffffff;
+}
+
+.models-button {
+    background-color: black;
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    margin-left: 167px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+  
+.models-button:hover {
+    background-color: #333;
+}
+
+.photo{
+    border-radius: 15px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    animation: slide 16s infinite;
+    left: 0;
+}
+
+img{
+    width: 100%;
+}
+/*Animation activated by keyframes*/
+@keyframes slide{
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20%{
+        transform: translateX(0);
+    }
+    40%{
+        transform: translateX(-100%);
+    }
+    60%{
+        transform: translateX(-100%);
+    }
+    80%{
+        transform: translateX(-200%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+    
+}
+
+.info {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
 }

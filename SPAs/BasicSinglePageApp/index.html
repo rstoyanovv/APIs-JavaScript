@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Basic SPA</title>
+    <title> SilverStar Catalog </title>
 </head>
+
 <body>
     <header>
         <nav class="navigation">
-            <div>
-                <a href="/">Home</a>
-                <a href="/information">About</a>
+            <div style="margin-top: 12px;">
+                <a href="/">Начало</a>
+                <a href="/carModels">Модели</a>
             </div>
             <div>
-                <a href="/login">Login</a>
-                <a href="/contact-form">Contact</a>
+                <a href="/" style="font-family: serif; font-size: 32px;">Silver-Star</a>
+            </div>
+            <div style="margin-top: 12px;">
+                <a href="/login">Вход</a>
+                <a href="/contact-form">Контакти</a>
             </div>
         </nav>
     </header>
@@ -23,12 +28,30 @@
     <main class="main-content">
 
         <section class="home-page">
-            <h1>Simple application</h1>
+            <div>
+                <div class="photo">
+                    <img src="img/home-logo.jpg" alt="Large Photo">
+                    <img src="img/logo-2.jpg" alt="Large Photo">
+                    <img src="img/logo-3.jpg" alt="Large Photo">
+                </div>
+                <h2 class="title">SilverStar</h2>
+                <p class="info">
+                    Официален доставчик за България на Daimler AG. Мерцедес Бенц е автомобилна марка,
+                    която е част от немската автомобилна компания Daimler AG.Марката Мерцедес Бенц е
+                    известна със своята висококачествена инженерия, изискан дизайн и внимание към
+                    детайлите. Тя предлага широка гама от луксозни автомобили, като седани, купета,
+                    кабриолети, SUV-ове и спортни автомобили. Мерцедес Бенц е световен лидер в
+                    автомобилната индустрия и е известен с иновативните технологии, които внедрява
+                    в своите модели. Някои от техните напреднали функции включват системи за сигурност,
+                    помощни шофьорски системи, ефективни двигатели и комфортни интериори.
+                </p>
+            </div>
+
         </section>
 
         <section class="login">
-            <h2>Login</h2>
-            <form>
+            <h2 id="login-header">Login</h2>
+            <form id="login-form">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
 
@@ -39,9 +62,72 @@
             </form>
         </section>
 
-        <section class="information">
-            <h2>Information</h2>
-            <p>Some information for the organization.</p>
+        <section class="user-account" style="display: none;">
+            <h2>Welcome, [User's Name]</h2>
+            <div class="profile-picture">
+
+            </div>
+            <p>
+                You have successfully logged in to your account.
+            </p>
+            <div class="user-actions">
+                <a href="/account-settings">Account Settings</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </section>
+
+        <section class="login-message" style="display: none;">
+            <p>Invalid username or password. Please try again.</p>
+        </section>
+
+        <section class="carModels">
+                <div class="model-main-heading">
+                    <h1>Available models on Silver-Star Bulgaria</h1>
+                </div>
+            <div class="models-container">
+                
+                <div class="car-model">
+                    <h2 class="model-heading">GLE</h2>
+                    <p>Additional information about Car Model 1.</p>
+                    <img src="img/car_model1.png" alt="Car Model 1">
+                    <button class="models-button">View Details</button>
+                </div>
+
+                <div class="car-model">
+                    <h2 class="model-heading">GLC</h2>
+                    <p>Additional information about Car Model 2.</p>
+                    <img src="img/car_model2.png" alt="Car Model 2">
+                    <button class="models-button">View Details</button>
+                </div>
+
+                <div class="car-model">
+                    <h2 class="model-heading">GLB</h2>
+                    <p>Additional information about Car Model 3.</p>
+                    <img src="img/car_model3.png" alt="Car Model 3">
+                    <button class="models-button">View Details</button>
+                </div>
+
+                <div class="car-model">
+                    <h2 class="model-heading">S</h2>
+                    <p>Additional information about Car Model 4.</p>
+                    <img src="img/car_model4.png" alt="Car Model 4">
+                    <button class="models-button">View Details</button>
+                </div>
+
+                <div class="car-model">
+                    <h2 class="model-heading">CLA</h2>
+                    <p>Additional information about Car Model 5.</p>
+                    <img src="img/car_model5.png" alt="Car Model 5">
+                    <button class="models-button">View Details</button>
+                </div>
+
+                <div class="car-model">
+                    <h2 class="model-heading">EQE</h2>
+                    <p>Additional information about Car Model 6.</p>
+                    <img src="img/car_model6.png" alt="Car Model 6">
+                    <button class="models-button">View Details</button>
+                </div>
+            </div>
         </section>
 
         <section class="contact-form">
@@ -63,4 +149,5 @@
     </main>
     <script src="src/app.js" type="module"></script>
 </body>
+
 </html>

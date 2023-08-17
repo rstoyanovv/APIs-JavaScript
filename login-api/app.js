@@ -1,6 +1,6 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const db = require('./db-connection');
+import express from 'express';
+import bodyParser from 'body-parser';
+import * as logic from './index.js';
 
 const app = express();
 const port = 3000;
@@ -8,14 +8,14 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (request, res) => {
+app.get('/', (req, res) => {
     res.json({ info: 'Node.js, Express, and Postgres API' })
 });
 
-app.get('/users', db.getUsers);
-app.get('/users/:id', db.getUserById);
-app.post('/users', db.createUser);
-app.put('/users/:id', db.updateUser);
+app.get('/users', logic.getUsers);
+app.get('/users/:id', logic.getUserById);
+app.post('/users', logic.createUser);
+app.put('/users/:id', logic.updateUser);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}.`);

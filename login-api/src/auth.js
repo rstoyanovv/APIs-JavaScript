@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                console.log('Authentication is successful in fe');
+                console.log('Authentication is successful!');
                 // Redirect the user or perform other actions here
             } else {
-                console.error('Authentication failed');
+                console.error('Authentication failed!');
                 // Handle failed authentication, show error message, etc.
             }
         } catch (error) {

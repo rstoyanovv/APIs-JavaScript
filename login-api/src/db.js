@@ -1,5 +1,4 @@
 import { dbConnection } from "./environment.js";
-//import { Pool } from 'pg';
 import pkg from 'pg';
 const { Pool } = pkg;
 

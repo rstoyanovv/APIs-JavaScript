@@ -24,8 +24,9 @@ const getUserById = (req, res) => {
 const createUser = (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
+    const password = req.body.password;
   
-    pool.query('INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id', [name, email], (error, results) => {
+    pool.query('INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id', [name, email, password], (error, results) => {
       if (error) {
         console.error(error);
         throw error;
@@ -49,10 +50,34 @@ const updateUser = (req, res) => {
       }
     )
   }
+
+  const authenticateUser = (req, res) => {
+    const { email, password } = req.body;
+
+    pool.query('SELECT * FROM users WHERE email = $1', [email], (error, results) => {
+
+        if (error) {
+            throw error;
+        }
+
+        if (results.rows.length === 0) {
+            res.status(401).json({ message: 'Authentication failed' });
+        } else {
+            const user = results.rows[0];
+
+            if (user.password === password) {
+                res.status(200).json({ message: 'Authentication is successful in backend' });
+            } else {
+                res.status(401).json({ message: 'Authentication failed' });
+            }
+        }
+    });
+};
   
 export {
     getUsers,
     getUserById,
     createUser,
     updateUser,
+    authenticateUser,
 }

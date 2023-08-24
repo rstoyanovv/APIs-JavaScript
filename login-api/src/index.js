@@ -61,14 +61,14 @@ const updateUser = (req, res) => {
         }
 
         if (results.rows.length === 0) {
-            res.status(401).json({ message: 'Authentication failed' });
+            res.status(401).json({ message: 'Authentication failed!' });
         } else {
             const user = results.rows[0];
 
             if (user.password === password) {
-                res.status(200).json({ message: 'Authentication is successful in backend' });
+                res.status(200).json({ message: 'Authentication is successful!' });
             } else {
-                res.status(401).json({ message: 'Authentication failed' });
+                res.status(401).json({ message: 'Authentication failed!' });
             }
         }
     });

@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import * as logic from './index.js';
+import userRoutes from './routes/userRouter.js';
 import cors from 'cors';
 
 const app = express();
@@ -14,11 +14,7 @@ app.get('/', (req, res) => {
     res.json({ info: 'Node.js, Express, and Postgres Login API' })
 });
 
-app.get('/users', logic.getUsers);
-app.get('/users/:id', logic.getUserById);
-app.post('/users', logic.createUser);
-app.put('/users/:id', logic.updateUser);
-app.post('/authenticate', logic.authenticateUser);
+app.use('/users', userRoutes);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}.`);

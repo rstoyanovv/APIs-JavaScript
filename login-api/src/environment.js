@@ -1,8 +1,7 @@
 import dotenv from 'dotenv';
+dotenv.config({path: '../.env'});
 
-dotenv.config();
-
-const dbConnection = {
+export const dbConnection = {
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     database: process.env.DB_NAME,
@@ -10,4 +9,11 @@ const dbConnection = {
     password: process.env.DB_PASSWORD,
 };
 
-export { dbConnection };
+export const jwtConfig = {
+    secret: process.env.JWT_SECRET,
+    expiresIn: process.env.JWT_EXPIRES_IN,
+};
+
+export const passwordConfig = {
+    saltRounds: 12,
+};

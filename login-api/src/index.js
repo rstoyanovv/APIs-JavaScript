@@ -57,19 +57,20 @@ const updateUser = (req, res) => {
     pool.query('SELECT * FROM users WHERE email = $1', [email], (error, results) => {
 
         if (error) {
-            throw error;
+          throw error;
         }
 
         if (results.rows.length === 0) {
-            res.status(401).json({ message: 'Authentication failed!' });
+          res.status(401).json({ message: 'Authentication failed!' });
+          
         } else {
-            const user = results.rows[0];
+          const user = results.rows[0];
 
-            if (user.password === password) {
-                res.status(200).json({ message: 'Authentication is successful!' });
-            } else {
-                res.status(401).json({ message: 'Authentication failed!' });
-            }
+          if (user.password === password) {
+            res.status(200).json({ message: 'Authentication is successful!' });
+          } else {
+            res.status(401).json({ message: 'Authentication failed!' });
+          }
         }
     });
 };

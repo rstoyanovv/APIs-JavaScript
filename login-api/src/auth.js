@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
 
         const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+        const password = document.getElementById('password').value.toString();
 
         try {
-            const response = await fetch('http://localhost:3000/users/authenticate', {
+            const response = await fetch('http://localhost:3000/api/users/authenticate', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -18,10 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 console.log('Authentication is successful!');
-                // Redirect the user or perform other actions here
+
             } else {
-                console.error('Authentication failed!');
-                // Handle failed authentication, show error message, etc.
+                const errorResponse = await response.json();
+                console.error('Authentication failed:', errorResponse.message);
             }
         } catch (error) {
             console.error('An error occurred', error);

@@ -10,8 +10,7 @@ class UserDatabaseConnector {
         try {
             const result = await new Promise((resolve, reject) => {
                 pool.query('SELECT * FROM users WHERE email = $1', [email], (e, result) => {
-                    if (e) {
-                       
+                    if (e) {        
                         console.error(e);
                         reject(new UserNotFound("Not found user with this email!"));
                     } else {
@@ -33,9 +32,33 @@ class UserDatabaseConnector {
             throw error;
         }
     }
+
+    insertNewUserIntoDatabase = async (username, email, password) => {
+        try {
+            await new Promise((resolve, reject) => {
+                pool.query (`INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`, 
+                [username, email, password], (e) => {
+                    if(e) {
+                        console.error(e);
+                        reject (new UnsuccessfullAddingOfNewUser("The creation of new user is not successful"));
+                    } else {
+                        resolve("Successful added new user");
+                    }
+                })
+            })
+        } catch (e) {
+            throw e;
+        }
+    }
 }
 
 class UserNotFound extends Error {
+    constructor() {
+        super();
+    }
+}
+
+class UnsuccessfullAddingOfNewUser extends Error {
     constructor() {
         super();
     }

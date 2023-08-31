@@ -1,16 +1,13 @@
 import express from 'express';
-//import * as logic from '../index.js'; // Update the path to your index.js file
-
-/*router.get('/', logic.getUsers);
-router.get('/:id', logic.getUserById);
-router.post('/', logic.createUser);
-router.put('/:id', logic.updateUser);*/
 
 class UserRouter {
-    constructor({ UserService }) {
+
+    constructor({ UserService, passwordConfigurator }) {
         this.UserService = UserService;
+        this.passwordConfigurator = passwordConfigurator;
         this.router = express.Router();
-        this.router.post('/authenticate', this.authenticateUser)
+        this.router.post('/authenticate', this.authenticateUser);
+        this.router.post('/create-user', this.createUser);
     }
 
     authenticateUser = async (req, res) => {
@@ -23,6 +20,22 @@ class UserRouter {
         } catch (e) {
             console.error(e);
             res.status(500).json({ message: "Error with authentication!"});
+        }
+    }
+
+    createUser = async (req, res) => {
+        try {
+            const email = req.body.email;
+            const username = req.body.username;
+            const password = req.body.password;
+            const hashedPassword = await this.passwordConfigurator.hashPassword(password);
+
+            await this.UserService.createUser(username, email, hashedPassword);
+            res.status(200).json({message: "Successful added new user"});
+
+        } catch (e) {
+            console.error(e);
+            res.status(500).json({ message: "Error with creating new account!" });
         }
     }
 }

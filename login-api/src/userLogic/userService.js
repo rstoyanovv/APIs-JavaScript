@@ -19,10 +19,14 @@ class UserService {
             const token = this.JwtService.generateToken({ email: user.email });
             return token;
 
-        } catch (err) {
-            console.error('An error occurred:', err.message);
-            throw err; // Re-throw the error for higher-level handling if needed
+        } catch (e) {
+            console.error('An error occurred:', e.message);
+            throw e;
         }
+    }
+
+    createUser = async (username, email, password) => {
+        await this.UserDatabaseConnector.insertNewUserIntoDatabase(username, email, password);
     }
 }
 
